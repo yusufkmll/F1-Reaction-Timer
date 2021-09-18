@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/"/>
+    <qresource prefix="/resources">
+        <file>resources/light_on.png</file>
+        <file>resources/Formula1-Bold_web_0.ttf</file>
+        <file>resources/Formula1-Regular_web_0.ttf</file>
+        <file>resources/Formula1-Wide_web_0.ttf</file>
+        <file>resources/light_off.png</file>
+        <file>resources/light_on_CIRCLE.png</file>
+    </qresource>
+</RCC>
