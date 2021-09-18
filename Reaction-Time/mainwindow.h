@@ -7,6 +7,7 @@
 #include <QDateTime>
 #include <QElapsedTimer>
 #include <QList>
+#include <QRandomGenerator>
 
 #define LIGHT_ON "image: url(:/resources/resources/light_on.png)"
 #define LIGHT_OFF "image: url(:/resources/resources/light_off.png)"
@@ -29,6 +30,8 @@ private slots:
     void on_button_clicked();
 
     void timerUpdate();
+
+    void lightsOut();
 
 private:
     Ui::MainWindow *ui;

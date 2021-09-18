@@ -3,7 +3,10 @@
 #include "QDebug"
 
 QElapsedTimer stopwatch;
+QElapsedTimer stopwatchLightsOut;
 QList<QFrame*> lightList;
+int counter = 0;
+bool lightsFullyOff = false;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -56,22 +59,47 @@ void MainWindow::on_button_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    qint64 elapsed = stopwatch.nsecsElapsed();
-    double elapsedD = (double)elapsed / 1000000000;
     QMessageBox sda;
-    sda.setText("Reaction Time: " + QString::number(elapsedD, 'f', 6) + " seconds");
-    sda.exec();
+    if(lightsFullyOff)
+    {
+        qint64 elapsed = stopwatch.nsecsElapsed();
+        double elapsedD = (double)elapsed / 1000000000;
+        sda.setText("Reaction Time: " + QString::number(elapsedD, 'f', 6) + " seconds");
+        sda.exec();
+        lightsFullyOff = false;
+    }
+    else
+    {
+        timer1s->stop();
+        counter = 0;
+        sda.setText("Jumpstart!");
+        sda.exec();
+    }
 }
 
-int counter = 0;
 void MainWindow::timerUpdate()
 {
-    lightList[counter]->setStyleSheet(LIGHT_ON);
+    if(counter < 5)
+    {
+        lightList[counter]->setStyleSheet(LIGHT_ON);
+    }
     counter++;
-    if(counter == 5)
+    if(counter == 6)
     {
         counter = 0;
-        stopwatch.start();
+        quint32 v = QRandomGenerator::global()->bounded(2000); //Random miliseconds for lights out
+        QTimer::singleShot(v, this, SLOT(lightsOut()));
+        timer1s->stop();
     }
     qDebug() << QString::number(counter);
+}
+
+void MainWindow::lightsOut()
+{
+    lightsFullyOff = true;
+    for (int i = 0; i < lightList.count(); i++)
+    {
+        lightList[i]->setStyleSheet(LIGHT_OFF);
+    }
+    stopwatch.start();
 }

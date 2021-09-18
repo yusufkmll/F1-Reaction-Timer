@@ -11,7 +11,7 @@
 - [x] Add resources in Qt
 - [x] Learn about layout in Qt Creator
 - [x] Add buttons and manage click slots
-- [ ] Add random number generator for the "lights out" time
+- [x] Add random number generator for the "lights out" time
 - [ ] Add score table
 - [ ] Log the results in desired destination
 - [ ] Play David Croft "LIGTHS OUT AND AWAY THEY GO" sound when lights out
