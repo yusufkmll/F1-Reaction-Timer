@@ -59,7 +59,7 @@ void MainWindow::on_pushButton_2_clicked()
     qint64 elapsed = stopwatch.nsecsElapsed();
     double elapsedD = (double)elapsed / 1000000000;
     QMessageBox sda;
-    sda.setText("Fark: " + QString::number(elapsedD, 'f', 6) + " saniye");
+    sda.setText("Reaction Time: " + QString::number(elapsedD, 'f', 6) + " seconds");
     sda.exec();
 }
 
